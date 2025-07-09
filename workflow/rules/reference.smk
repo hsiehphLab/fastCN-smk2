@@ -9,7 +9,7 @@ module Rhodonite:
     snakefile:
         #"https://github.com/mrvollger/Rhodonite/raw/master/workflow/Snakefile"
         #"https://github.com/mrvollger/Rhodonite/raw/test/workflow/Snakefile"
-        "/projects/standard/hsiehph/shared/software/pipelines/Rhodonite2/Rhodonite.2025.06.20/workflow/Snakefile"
+        "/projects/standard/hsiehph/shared/software/pipelines/Rhodonite2/Rhodonite.2025.07.09/workflow/Snakefile"
     config:
         mask_config
 
@@ -32,7 +32,7 @@ rule mask_file:
     log:
         "logs/{sample}/{sample}.mask.log",
     conda:
-        "../envs/env.yml"
+        "fastcn3_env"
     resources:
         mem_mb=1024 * 6,
         runtime=60 * 24,
@@ -56,7 +56,7 @@ rule exclude_file:
     output:
         bed="results/{sample}/{sample}.exclude.bed",
     conda:
-        "../envs/env.yml"
+        "fastcn3_env"
     log:
         "logs/{sample}/{sample}.exclude.log",
     params:
@@ -83,7 +83,7 @@ rule include_file:
     output:
         include="results/{sample}/{sample}.include.bed",
     conda:
-        "../envs/env.yml"
+        "fastcn3_env"
     log:
         "logs/{sample}/{sample}.include.log",
     resources:
@@ -109,7 +109,7 @@ rule fastcn_GC_bin:
     log:
         "logs/{sample}.GC_mask.log",
     conda:
-        "../envs/env.yml"
+        "fastcn3_env"
     params:
         window=400,
     resources:
@@ -136,7 +136,7 @@ rule masked_reference:
         fasta="results/{sample}/{sample}.masked.fasta",
         fai="results/{sample}/{sample}.masked.fasta.fai",
     conda:
-        "../envs/env.yml"
+        "fastcn3_env"
     log:
         "logs/{sample}/mask_reference.log",
     resources:
@@ -159,7 +159,7 @@ rule make_windows:
         bed="results/{sample}/{sample}.windows.bed",
     threads: 1
     conda:
-        "../envs/env.yml"
+        "fastcn3_env"
     log:
         "logs/{sample}/make_windows.log",
     params:
@@ -179,7 +179,7 @@ rule autosome_control_windows:
     output:
         bed="results/{sample}/{sample}_auto_control.bed",
     conda:
-        "../envs/env.yml"
+        "fastcn3_env"
     log:
         "logs/{sample}/{sample}.auto_control.log",
     resources:
@@ -211,7 +211,7 @@ rule chrX_control_windows:
     log:
         "logs/{sample}/{sample}.chr_control.log",
     conda:
-        "../envs/env.yml"
+        "fastcn3_env"
     threads: 1
     shell:
         """

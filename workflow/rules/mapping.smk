@@ -20,7 +20,7 @@ rule split_reads:
     output:
         reads=temp(scatter.split("temp/reads/{{sm}}/{scatteritem}.fq.gz")),
     conda:
-        "../envs/env.yml"
+        "fastcn3_env"
     resources:
         mem_mb=1024 * 2,
         runtime=60 * 8,
@@ -55,7 +55,7 @@ rule mrsfast_index:
     output:
         index=config.get("masked_ref", rules.masked_reference.output.fasta) + ".index",
     conda:
-        "../envs/env.yml"
+        "fastcn3_env"
     log:
         "logs/mrsfast/index.{sample}.log",
     resources:
@@ -76,7 +76,7 @@ rule mrsfast_alignment:
     output:
         sam=temp("temp/mrsfast/{sample}/{sm}/mrsfast.{scatteritem}.sam.gz"),
     conda:
-        "../envs/env.yml"
+        "fastcn3_env"
     resources:
         total_mem=lambda wildcards, attempt, threads: 8 * attempt * threads - 2,
         mem_mb=lambda wildcards, attempt, threads: 1024 * 8 * attempt * threads,
@@ -111,7 +111,7 @@ rule mrsfast_sort:
     output:
         bam=temp("temp/mrsfast/{sample}/{sm}/{scatteritem}.bam"),
     conda:
-        "../envs/env.yml"
+        "fastcn3_env"
     log:
         "logs/{sample}/mrsfast/sort/{sm}/{scatteritem}_sort.log",
     benchmark:
@@ -139,7 +139,7 @@ rule merged_mrsfast_bam:
     output:
         merged=temp("results/{sample}/mapping/{sm}_merged.out.gz"),
     conda:
-        "../envs/env.yml"
+        "fastcn3_env"
     resources:
         mem_mb=1024 * 4,
         runtime=60 * 24,
@@ -165,7 +165,7 @@ rule compress_mrsfast_further:
     output:
         comp="results/{sample}/mapping/{sm}_merged_comp.out.gz",
     conda:
-        "../envs/env.yml"
+        "fastcn3_env"
     resources:
         mem_mb=1024 * 2,
         runtime=60 * 24,
