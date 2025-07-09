@@ -5,7 +5,8 @@ max-jobs-per-second: 50
 default-resources:
   - disk_mb=4096
   - mem_mb=16096
-  - runtime=500
+  - runtime=4000
+  # - runtime=500 was inadequate for Rhodonite_dust_count 
   # you can change the default account or partition by them to the default-resources.
   # Without these options it will default to stergachislab and compute when using hyak.
 # - slurm_partition=ckpt

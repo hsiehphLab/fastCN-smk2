@@ -36,11 +36,13 @@ rule split_reads:
     shell:
         """
         if [[ $( echo {input.reads} ) =~ \.(fasta|fasta.gz|fa|fa.gz|fastq|fastq.gz|fq|fq.gz)$ ]]; then 
-            cat {input.reads} \
+            #cat {input.reads} \ DG 2025.06.18 since gave error "rustybam: command not found"
+            module load rustybam/0.1.31 && cat {input.reads} \
                 | seqtk seq -F '#' \
                 | rustybam fastq-split {output.reads} 
         elif [[ $( echo {input.reads} ) =~ \.(bam|cram|sam|sam.gz)$ ]]; then 
-            samtools fasta -@ {threads} {input.reads} \
+            #samtools fasta -@ {threads} {input.reads} \ DG 2025.06.18 since gave error "rustybam: command not found"
+            module load rustybam/0.1.31 && samtools fasta -@ {threads} {input.reads} \
                 | seqtk seq -F '#' \
                 | rustybam fastq-split {output.reads} 
         fi 
@@ -88,7 +90,14 @@ rule mrsfast_alignment:
         """
         mkdir -p $(dirname {output.sam})
 
-        extract-from-fastq36.py --in {input.reads} \
+        # mrsfast here gave seg faults June 29, 2025 and also on May 8, 2025 both with this
+        # conda environment and even with the one from run2.
+        # extract-from-fastq36.py --in {input.reads} \
+        #     | mrsfast --search {input.ref} --seq /dev/stdin \
+        #         --disable-nohits --mem {resources.total_mem} --threads {threads} \
+        #         -e 2 --outcomp \
+        #         -o $(dirname {output.sam})/mrsfast.{wildcards.scatteritem}
+        export PATH=/projects/standard/hsiehph/shared/software/packages/mrsfast/sfu-compbio-mrsfast-cf8e678:$PATH && extract-from-fastq36.py --in {input.reads} \
             | mrsfast --search {input.ref} --seq /dev/stdin \
                 --disable-nohits --mem {resources.total_mem} --threads {threads} \
                 -e 2 --outcomp \
@@ -108,7 +117,8 @@ rule mrsfast_sort:
     benchmark:
         "benchmarks/{sample}/sort_bam/{sm}/{scatteritem}.tbl"
     resources:
-        mem_mb=1024 * 4,
+        #mem_mb=1024 * 4, failed 2025.06.23
+        mem_mb=1024 * 8,
         runtime=60 * 24,
         load=1,
     threads: 2
