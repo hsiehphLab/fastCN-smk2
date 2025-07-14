@@ -1,5 +1,5 @@
 reference: "hs1_chr22"
-fasta: /projects/standard/hsiehph/gordo893/pipelines/fastcn/mitchells_2025.06.05/NA12878/run3/make_new_reference/chr22.fa
+fasta: config_new/chr22.fa
 sd: config_new/SDs.bed.gz
 nchunks: 50
 manifest: config_new/real-test.tbl
