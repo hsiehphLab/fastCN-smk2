@@ -1,5 +1,0 @@
-reference: "T2T-CHM13"
-fasta: /projects/standard/hsiehph/shared/hsiehph_shared/assemblies/CHM13/T2T/v2.0/PAR_maskedY/chm13v2.0_maskedY.fa
-sd: config_new/SDs.bed.gz
-nchunks: 50
-manifest: config_new/real-test.tbl
