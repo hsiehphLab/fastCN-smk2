@@ -1,0 +1,3 @@
+[submodule "Rhodonite"]
+	path = Rhodonite
+	url = git@github.com:hsiehphLab/Rhodonite.git
