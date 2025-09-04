@@ -79,7 +79,7 @@ rule mrsfast_alignment:
         "fastcn3_env"
     resources:
         total_mem=lambda wildcards, attempt, threads: 8 * attempt * threads - 2,
-        mem_mb=lambda wildcards, attempt, threads: 1024 * 8 * attempt * threads,
+        mem_mb=lambda wildcards, attempt, threads: 1024 * 8 * (attempt + 1) * threads,
         runtime=60 * 4,
         load=1,
     benchmark:
