@@ -77,6 +77,7 @@ rule mrsfast_alignment:
         sam=temp("temp/mrsfast/{sample}/{sm}/mrsfast.{scatteritem}.sam.gz"),
     conda:
         "fastcn3_env"
+    # 32G was insufficient so started with 64G by replacing attempt with attempt+1 (DG, 2025.09.03)
     resources:
         total_mem=lambda wildcards, attempt, threads: 8 * attempt * threads - 2,
         mem_mb=lambda wildcards, attempt, threads: 1024 * 8 * (attempt + 1) * threads,
