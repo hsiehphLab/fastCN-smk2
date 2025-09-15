@@ -10,9 +10,10 @@ QuicK-mer2/quicKmer2: fastCN/GC_control_gen
 
 
 
-
+# changed 2025.09.15 (DG)
+# to git clone from the hsiehphLab repository instead of Jeff Kidd's repository
 fastCN/GC_control_gen:
-	git clone https://github.com/KiddLab/fastCN.git \
+	git clone git@github.com:hsiehphLab/fastCN.git \
 		&& cd fastCN \
 		&& sed -i -e 's/Use_strict 1/Use_strict 0/g' GC_control_gen.cc \
 		&& g++ ${LDFLAGS} -o GC_control_gen GC_control_gen.cc \
