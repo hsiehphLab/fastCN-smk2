@@ -96,12 +96,13 @@ rule include_file:
             -g {input.fai} \
             > {output.include}
         """
-
+# changed 2025.09.17 (DG)
+#        mask=rules.mask_file.output.bed,
 
 rule fastcn_GC_bin:
     input:
-        mask=rules.mask_file.output.bed,
-        exclude=rules.exclude_file.output.bed,
+        mask=config.get( "mask_bed", rules.mask_file.output.bed ),
+        exclude=config.get( "exclude_bed", rules.exclude_file.output.bed ),
         fasta=config["fasta"],
         fai=f'{config["fasta"]}.fai',
     output:
@@ -126,10 +127,12 @@ rule fastcn_GC_bin:
             > {log} 2>&1
         """
 
+# changed 2025.09.17 (DG)
+#        mask=rules.mask_file.output.bed,
 
 rule masked_reference:
     input:
-        mask=rules.mask_file.output.bed,
+        mask=config.get( "mask_bed", rules.mask_file.output.bed ),
         fasta=config["fasta"],
         fai=f'{config["fasta"]}.fai',
     output:
@@ -171,10 +174,16 @@ rule make_windows:
         "../scripts/windows.py"
 
 
+# replaced 2025.09.17 (DG)
+# exclude=rules.exclude_file.output.bed 2025.09.
+
+# changed 2025.09.17 (DG)
+#        mask=rules.mask_file.output.bed,
+
 rule autosome_control_windows:
     input:
-        mask=rules.mask_file.output.bed,
-        exclude=rules.exclude_file.output.bed,
+        mask=config.get( "mask_bed", rules.mask_file.output.bed ),
+        exclude=config.get( "exclude_bed", rules.exclude_file.output.bed ),
         windows=rules.make_windows.output.bed,
     output:
         bed="results/{sample}/{sample}_auto_control.bed",
@@ -197,11 +206,16 @@ rule autosome_control_windows:
             > {output.bed}
         """
 
+# replaced 2025.09.17 (DG)
+#        exclude=rules.exclude_file.output.bed,
+
+# replaced 2025.09.17 (DG)
+#        mask=rules.mask_file.output.bed,
 
 rule chrX_control_windows:
     input:
-        mask=rules.mask_file.output.bed,
-        exclude=rules.exclude_file.output.bed,
+        mask=config.get( "mask_bed", rules.mask_file.output.bed ),
+        exclude=config.get( "exclude_bed", rules.exclude_file.output.bed ),
         windows=rules.make_windows.output.bed,
     output:
         bed="results/{sample}/{sample}_chrX_control.bed",
