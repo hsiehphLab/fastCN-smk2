@@ -57,7 +57,9 @@ rule mrsfast_index:
     conda:
         "fastcn3_env"
     log:
-        "logs/mrsfast/index.{sample}.log",
+        "logs/mrsfast/index.sample.log",
+# changed above 9/12/2025 to fix error message
+#        "logs/mrsfast/index.{sample}.log",
     resources:
         mem_mb=1024 * 8,
         runtime=60 * 24,
