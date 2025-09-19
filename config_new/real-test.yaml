@@ -1,5 +1,17 @@
-reference: "hs1_chr22"
-fasta: config_new/chr22.fa
-sd: config_new/SDs.bed.gz
+reference: "hs1"
+fasta: /projects/standard/hsiehph/shared/hsiehph_shared/assemblies/CHM13/T2T/v2.0/ucsc/hs1.fa
+sd: /projects/standard/hsiehph/shared/hsiehph_shared/assemblies/CHM13/T2T/v2.0/anno/chm13v2.0_SD.bed 
 nchunks: 50
 manifest: config_new/real-test.tbl
+#--------------------------------------------------------
+RepeatMasker: /projects/standard/hsiehph/gordo893/projects/fastcn/PNG/runs_testing/reference_file_parameters/reference_files/hs1/hs1.mask.bed
+trf: /projects/standard/hsiehph/gordo893/projects/fastcn/reference_t2t/trf.bed.gz
+windowmasker: /projects/standard/hsiehph/gordo893/projects/fastcn/reference_t2t/dust.bed.gz
+masked_ref: /projects/standard/hsiehph/gordo893/projects/fastcn/PNG/runs_testing/reference_file_parameters/reference_files/hs1/hs1.masked.fasta
+autosome_control: /projects/standard/hsiehph/gordo893/projects/fastcn/PNG/runs_testing/reference_file_parameters/reference_files/hs1/hs1_auto_control.bed
+chrX_control: /projects/standard/hsiehph/gordo893/projects/fastcn/PNG/runs_testing/reference_file_parameters/reference_files/hs1/hs1_chrX_control.bed
+reference_windows: /projects/standard/hsiehph/gordo893/projects/fastcn/PNG/runs_testing/reference_file_parameters/reference_files/hs1/hs1.windows.bed
+# added 2025.09.17 (DG)
+exclude_bed: /projects/standard/hsiehph/gordo893/projects/fastcn/PNG/runs_testing/reference_file_parameters/reference_files/hs1/hs1.exclude.bed
+mask_bed: /projects/standard/hsiehph/gordo893/projects/fastcn/PNG/runs_testing/reference_file_parameters/reference_files/hs1/hs1.mask.bed
+gc_control: /projects/standard/hsiehph/gordo893/projects/fastcn/PNG/runs_testing/reference_file_parameters/reference_files/hs1/hs1.bin
