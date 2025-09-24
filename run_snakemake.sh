@@ -10,6 +10,7 @@
 #SBATCH --mem=50g
 #SBATCH --tmp=1g
 
+
 source /projects/standard/hsiehph/shared/bin/initialize_conda.sh
 conda activate snakemake_fastcn
 
@@ -34,6 +35,7 @@ snakemake \
     --latency-wait 60 \
     --restart-times 3 \
     --jobs 100 \
+    --nolock \
     "$@"
 
 
