@@ -26,7 +26,7 @@ export PATH=$PWD/bin:$PATH
 snakemake \
     --use-conda \
    --profile profiles/slurm-executor \
-   --configfile config_new/real-test.yaml \
+   --configfile config/config.yaml \
     --local-cores 20 \
     --cores 20 \
     --max-inventory-time 10000 \
