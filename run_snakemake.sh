@@ -7,7 +7,8 @@
 # #SBATCH --time=96:00:00
 
 #SBATCH --ntasks=1
-#SBATCH --mem=50g
+# down from 50g per Kiley (DG, 2026.03.20)
+#SBATCH --mem=2g
 #SBATCH --tmp=1g
 
 
