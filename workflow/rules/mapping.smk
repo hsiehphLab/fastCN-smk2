@@ -62,7 +62,7 @@ rule mrsfast_index:
 #        "logs/mrsfast/index.{sample}.log",
     resources:
         mem_mb=1024 * 8,
-        runtime=60 * 24,
+        runtime=60 * 24
     threads: 1
     shell:
         """
