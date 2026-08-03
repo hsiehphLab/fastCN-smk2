@@ -20,7 +20,10 @@ fastCN/GC_control_gen:
 		&& g++ ${LDFLAGS} -o SAM_GC_correction SAM_GC_correction.cc \
 		&& cd .. \
 		&& ln -s fastCN bin \
-		&& cargo install rustybam --root .
+		&& OPENSSL_NO_VENDOR=1 cargo install rustybam --root . --locked
+		# changed Aug 3, 2026 to solve compiler errors that just started appearing
+		# from compiling rust-htslib
+		# cargo install rustybam --root .
 
 
 
